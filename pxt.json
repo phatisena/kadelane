@@ -2,7 +2,19 @@
     "name": "kadelane",
     "description": "",
     "dependencies": {
-        "device": "*"
+        "device": "*",
+        "arcade-sprite-data": "github:microsoft/arcade-sprite-data#v0.2.1",
+        "arcade-sprite-util": "github:jwunderl/arcade-sprite-util#v0.4.1",
+        "pxt-scaling": "github:jwunderl/pxt-scaling#v0.1.0",
+        "Timers": "github:microsoft/arcade-timers#v1.1.0",
+        "arcade-text": "github:pelikhan/arcade-image-text#v0.0.4",
+        "Color Fading": "github:jwunderl/pxt-color#v0.2.3",
+        "arcade-fancy-text": "github:riknoll/arcade-fancy-text#v0.1.1",
+        "arcade-mini-menu": "github:riknoll/arcade-mini-menu#v0.0.1",
+        "arcade-block-objects": "github:microsoft/arcade-block-objects#f486ac1d4dcc096b9297174f97f8cdef1576c7ff",
+        "Extra Effects": "github:AlexSzeto/extra-effects#v3.1.0",
+        "tileData": "github:The-Code-Zone/TCZ-Tile-Data-pxt-extension#2b02eb000bcc65dea0dc45a0fa8e4e47165643c1",
+        "tilemaps": "github:microsoft/pxt-tilemaps#v1.12.0"
     },
     "files": [
         "main.blocks",
