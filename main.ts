@@ -167,12 +167,14 @@ function RandomToSort (Player: Sprite) {
     PlayerDiceStart.insertAt(Pidx, DiceVal)
     PlayerDice.insertAt(Pidx, sprites.readDataNumber(Player, "P#"))
 }
-controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (!(InGame)) {
-        ResetGame(false)
-    } else {
-        if (!(Start)) {
-            PlacePlayer()
+mp.onButtonEvent(mp.MultiplayerButton.A, ControllerButtonEvent.Pressed, function (player: mp.Player) {
+    if (player == mp.getPlayerByIndex(0)) {
+        if (!(InGame)) {
+            ResetGame(false)
+        } else {
+            if (!(Start)) {
+                PlacePlayer()
+            }
         }
     }
 })
@@ -951,11 +953,13 @@ function RenderStatus (Width: number, SliceHight: number, HighlightControl: bool
     Img.fillRect(Width - 1, 0, 1, scene.screenHeight(), 1)
     return Img
 }
-controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (Start) {
-        GetMovement(1, 3)
-    } else if (StartSetup) {
-        OptionPlayer(1, 1, 0)
+mp.onButtonEvent(mp.MultiplayerButton.Right, ControllerButtonEvent.Pressed, function(player: mp.Player) {
+    if (player == mp.getPlayerBySprite(My_player)) {
+        if (Start) {
+            GetMovement(1, 3)
+        } else if (StartSetup) {
+            OptionPlayer(1, 1, 0)
+        }
     }
 })
 function Get_stucked (Asker: Sprite) {
@@ -996,9 +1000,11 @@ function Get_overlaps (Player: Sprite) {
     }
     return spriteutils.nullConsts(spriteutils.NullConsts.Undefined)
 }
-controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (!(InGame)) {
-        ResetGame(true)
+mp.onButtonEvent(mp.MultiplayerButton.B, ControllerButtonEvent.Pressed, function(player: mp.Player) {
+    if (player == mp.getPlayerByIndex(0)) {
+        if (!(InGame)) {
+            ResetGame(true)
+        }
     }
 })
 spriteutils.createRenderable(20, function (screen2) {
@@ -1162,6 +1168,19 @@ function StartGame () {
     Setup_item()
     for (let index = 0; index <= Max_player - 1; index++) {
         tiles.placeOnRandomTile(Create_player(PlayerImage[0][index], index, randint(1, 4), PlayerImage[1][index]), assets.tile`myTile0`)
+        if (index < 2) {
+            if (index < 1) {
+                mp.setPlayerSprite(mp.playerSelector(mp.PlayerNumber.Two), Playersprite)
+            } else {
+                mp.setPlayerSprite(mp.playerSelector(mp.PlayerNumber.One), Playersprite)
+            }
+        } else {
+            if (index < 3) {
+                mp.setPlayerSprite(mp.playerSelector(mp.PlayerNumber.Four), Playersprite)
+            } else {
+                mp.setPlayerSprite(mp.playerSelector(mp.PlayerNumber.Three), Playersprite)
+            }
+        }
         PlacePlayerInSetup(10)
         RandomToSort(Playersprite)
     }
@@ -1249,11 +1268,13 @@ function Setup_item () {
         Check_overlap_in_setup(5)
     }
 }
-controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (Start) {
-        GetMovement(3, 1)
-    } else if (StartSetup) {
-        OptionPlayer(3, -1, 0)
+mp.onButtonEvent(mp.MultiplayerButton.Left, ControllerButtonEvent.Pressed, function (player: mp.Player) {
+    if (player == mp.getPlayerBySprite(My_player)) {
+        if (Start) {
+            GetMovement(3, 1)
+        } else if (StartSetup) {
+            OptionPlayer(3, -1, 0)
+        }
     }
 })
 function FindStucked (DxDyTemp: number[][]) {
@@ -1274,18 +1295,22 @@ function Can_i_Utrun_here (Asker: Sprite) {
     }
     return false
 }
-controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (Start) {
-        GetMovement(4, 2)
-    } else if (StartSetup) {
-        OptionPlayer(4, 0, -1)
+mp.onButtonEvent(mp.MultiplayerButton.Up, ControllerButtonEvent.Pressed, function (player: mp.Player) {
+    if (player == mp.getPlayerBySprite(My_player)) {
+        if (Start) {
+            GetMovement(4, 2)
+        } else if (StartSetup) {
+            OptionPlayer(4, 0, -1)
+        }
     }
 })
-controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (Start) {
-        GetMovement(2, 4)
-    } else if (StartSetup) {
-        OptionPlayer(2, 0, 1)
+mp.onButtonEvent(mp.MultiplayerButton.Down, ControllerButtonEvent.Pressed, function (player: mp.Player) {
+    if (player == mp.getPlayerBySprite(My_player)) {
+        if (Start) {
+            GetMovement(2, 4)
+        } else if (StartSetup) {
+            OptionPlayer(2, 0, 1)
+        }
     }
 })
 function Get_re_player_ID () {
