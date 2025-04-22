@@ -1,12 +1,11 @@
 {
     "name": "kadelane",
-    "version": "0.0.2",
+    "version": "0.0.1",
     "description": "",
     "dependencies": {
         "device": "*",
         "arcade-sprite-data": "github:microsoft/arcade-sprite-data#v0.2.1",
         "arcade-sprite-util": "github:jwunderl/arcade-sprite-util#v0.4.1",
-        "arcade-mp": "github:riknoll/arcade-mp#v0.1.0",
         "pxt-scaling": "github:jwunderl/pxt-scaling#v0.1.0",
         "Timers": "github:microsoft/arcade-timers#v1.1.0",
         "arcade-text": "github:pelikhan/arcade-image-text#v0.0.4",
